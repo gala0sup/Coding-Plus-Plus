@@ -1,0 +1,20 @@
+{% load  wagtailcore_tags define_action%}
+
+{%define "class='text-xl mt-auto mb-auto ml-1'" as li_css %}
+{%define "class='text-black py-2 px-4 hover:rounded-full hover:bg-blue-900 hover:text-blue-300'" as button_css%}
+
+{% block content %} 
+    <div class="navbar flex  mt-4  bg-gray-100 w-full rounded-full py-1 ">
+        <ul class="navbarul flex items-center ml-4">
+            <li {{li_css}}>
+                <button {{button_css}} > <a href="/">Active</a> </button>
+            </li>
+            <li {{li_css}}>
+                <button {{button_css}} > <a  href="#">Link</a> </button>
+            </li>
+            <li {{li_css}}>
+                <button {{button_css}} > <a  href="#">Link</a> </button>
+            </li>
+        </ul>
+    </div>
+{% endblock content %}

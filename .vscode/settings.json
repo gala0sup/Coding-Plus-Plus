@@ -1,0 +1,7 @@
+{
+    "emmet.includeLanguages": {"django-html": "html"},
+    "tailwindCSS.emmetCompletions": true,
+    "tailwindCSS.includeLanguages": {
+        "django-html": "html",
+    }
+}

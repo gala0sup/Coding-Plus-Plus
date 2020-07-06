@@ -1,0 +1,36 @@
+{% load wagtailcore_tags wagtailimages_tags%}
+
+
+<div class="AddImage container py-2">
+        {% image value.Image original as Image%}
+        {% if value.Position != 'center' %}
+                <div class="image_container float-{{value.Position}} px-2">
+                        {% if value.ImageOverride == False %}
+                            {% if Image.url != None  %}
+                                <img class = "rounded" src="{{Image.url}}" alt="{{value.AltText}}">
+                            {% else %}
+                                <img class = "rounded" src="{{value.ImageViaUrl}}"  alt="{{value.AltText}}">   
+                            {% endif %}
+                        {% else %}
+                                <img class = "rounded" src="{{value.ImageViaUrl}}" alt="{{value.AltText}}">   
+                        {% endif %}
+                    </div>
+            </div>
+        {% else %}
+            <div class="flex justify-center">
+                {% if value.ImageOverride == False %}
+                    {% if Image.url != None  %}
+                        <img class = "rounded" src="{{Image.url}}" alt="{{value.AltText}}">
+                    {% else %}
+                        <img class = "rounded" src="{{value.ImageViaUrl}}"  alt="{{value.AltText}}">   
+                    {% endif %}
+                {% else %}
+                        <img class = "rounded" src="{{value.ImageViaUrl}}" alt="{{value.AltText}}">   
+                {% endif %}
+            </div>
+        {% endif %}
+        
+</div>
+{% if value.ClearFix == True %}
+<div class="clearfix"></div>
+{% endif %}

@@ -133,5 +133,5 @@ class BlogEntryPage(Page):
 
     @property
     def template(self):
-        ctemplate = "blog\\blog_entry_page_copy.html"
+        ctemplate = "blog\\blog_entry_page.html"
         return ctemplate

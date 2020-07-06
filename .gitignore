@@ -2,6 +2,7 @@ venv
 *.ps1 
 *.bat
 __pycache__
+*temp*
 # Django #
 *.log
 *.pot

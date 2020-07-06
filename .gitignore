@@ -3,8 +3,8 @@ venv
 *.bat
 __pycache__
 temp*
-*exp*
 # Django #
+
 *.log
 *.pot
 *.pyc

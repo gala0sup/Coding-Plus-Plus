@@ -134,7 +134,7 @@ class BlogEntryPage(Page):
         MultiFieldPanel([
             FieldPanel("tags"),
             FieldPanel('category',widget=forms.Select)
-        ]),
+        ],heading="meta",classname="collapsible"),
 
         MultiFieldPanel([
             StreamFieldPanel('CoverImage',classname='full'),

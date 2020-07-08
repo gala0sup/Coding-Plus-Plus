@@ -133,7 +133,7 @@ class BlogEntryPage(Page):
     content_panels = Page.content_panels + [
         MultiFieldPanel([
             FieldPanel("tags"),
-            FieldPanel('categories',widget=forms.Select)
+            FieldPanel('category',widget=forms.Select)
         ]),
 
         MultiFieldPanel([

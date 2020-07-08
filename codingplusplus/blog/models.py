@@ -102,7 +102,7 @@ class BlogEntryPage(Page):
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
     tags = ClusterTaggableManager(through=BlogEntryPageTag, blank=True)
-    categories = ParentalManyToManyField('blog.BlogPageCategory',blank=False)
+    category = ParentalManyToManyField('blog.BlogPageCategory',blank=False)
 
     body = StreamField([
         ('Title',blocks.CharBlock(null=True,blank=False)),
@@ -155,5 +155,4 @@ class BlogEntryPage(Page):
 
     @property
     def template(self):
-        ctemplate = "blog/blog_entry_page/blog_entry_page.html"
-        return ctemplate
+            return "blog/blog_entry_page/"+str(self.category)+"/blog_entry_page.html"

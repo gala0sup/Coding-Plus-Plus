@@ -1,5 +1,6 @@
 from django.db import models
 from django import forms
+from django.utils.text import slugify
 
 from modelcluster.fields import ParentalKey,ParentalManyToManyField
 from modelcluster.contrib.taggit import ClusterTaggableManager
@@ -97,12 +98,83 @@ class BlogIndexPage(Page):
 
     parent_page_types = []
 
+class posts(Page):
+
+    slug = 'posts'
+
+    def get_context(self,request):
+        context = super().get_context(request)
+        blogpages = self.get_children().live().order_by('-first_published_at')
+        context['blogpages'] = blogpages
+        return context
+
+    parent_page_types = ['blog.BlogIndexPage']
+
+    @property
+    def template(self):
+        return 'blog/category.html'
+
+class CodingPost(Page):
+        
+    slug = 'coding'
+
+    def get_context(self,request):
+        context = super().get_context(request)
+        blogpages = self.get_children().live().order_by('-first_published_at')
+        context['blogpages'] = blogpages
+        return context
+
+    parent_page_types = ['blog.BlogIndexPage']
+
+    @property
+    def template(self):
+        return 'blog/category.html'
+
+class NewsPost(Page):
+
+    slug = 'news'
+
+    def get_context(self,request):
+        context = super().get_context(request)
+        blogpages = self.get_children().live().order_by('-first_published_at')
+        context['blogpages'] = blogpages
+        return context
+
+    parent_page_types = ['blog.BlogIndexPage']
+
+    @property
+    def template(self):
+        return 'blog/category.html'
+
+class GamingPost(Page):
+
+    slug = 'gaming'
+
+    def get_context(self,request):
+        context = super().get_context(request)
+        blogpages = self.get_children().live().order_by('-first_published_at')
+        context['blogpages'] = blogpages
+        return context
+
+    parent_page_types = ['blog.BlogIndexPage']
+
+    @property
+    def template(self):
+        return 'blog/category.html'
+
 class BlogEntryPage(Page):
 
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
     tags = ClusterTaggableManager(through=BlogEntryPageTag, blank=True)
-    category = ParentalManyToManyField('blog.BlogPageCategory',blank=False)
+    category = models.ForeignKey(
+        'blog.BlogPageCategory',
+        null=True,
+        blank=False,
+        default=1,
+        on_delete=models.SET_NULL,
+        related_name='+'
+    )
 
     body = StreamField([
         ('Title',blocks.CharBlock(null=True,blank=False)),
@@ -126,18 +198,19 @@ class BlogEntryPage(Page):
                                     'AltText':{'max_num' : 1},
                                     'position':{'max_num': 1}
                                 })
-            )],max_num=1,min_num=1)
-        ,verbose_name="Cover Image")
+            )],max_num=1,min_num=1),verbose_name="Cover Image")
 
+    ScreenWidthCoverImage = models.BooleanField(null=False,blank=False,default=False,help_text='Cover Image Should Be of Screen Width',verbose_name="")
 
     content_panels = Page.content_panels + [
         MultiFieldPanel([
             FieldPanel("tags"),
-            FieldPanel('category',widget=forms.Select)
+            FieldPanel('category',widget=forms.RadioSelect)
         ],heading="meta",classname="collapsible"),
 
         MultiFieldPanel([
             StreamFieldPanel('CoverImage',classname='full'),
+            FieldPanel('ScreenWidthCoverImage',classname='full'),
             StreamFieldPanel('body',classname='full')
         ],heading="Main Content Of post",
         classname="collapsible"
@@ -151,8 +224,4 @@ class BlogEntryPage(Page):
 
     ]
     
-    parent_page_types = ['blog.BlogIndexPage']
-
-    @property
-    def template(self):
-            return "blog/blog_entry_page/"+str(self.category)+"/blog_entry_page.html"
+    parent_page_types = ['blog.Posts','blog.CodingPost','blog.NewsPost','blog.GamingPost']

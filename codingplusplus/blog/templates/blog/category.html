@@ -1,0 +1,15 @@
+{% extends 'blog\base.html' %}
+{% load wagtailcore_tags %}
+
+
+{% block body_class %}
+class="bg-gray-400"
+{% endblock body_class %}
+
+{% block content %}
+    <div class="blog_entry flex flex-col px-5">
+        {% for post in blogpages %}
+            <a class="text-3xl" href="{% pageurl post %}" > {{ post.title }} </a>
+        {% endfor %}
+    </div>
+{% endblock content %}

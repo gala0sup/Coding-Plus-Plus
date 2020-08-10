@@ -23,15 +23,20 @@ class ReadOnlyPanel(EditHandler):
 
     def render_as_object(self):
         return format_html(
-            '<fieldset><legend>{}</legend>'
+            "<fieldset><legend>{}</legend>"
             '<ul class="fields"><li><div class="field">{}</div></li></ul>'
-            '</fieldset>',
-            self.heading, self.render())
+            "</fieldset>",
+            self.heading,
+            self.render(),
+        )
 
     def render_as_field(self):
         return format_html(
             '<div class="field">'
-            '<label>{}{}</label>'
+            "<label>{}{}</label>"
             '<div class="field-content">{}</div>'
-            '</div>',
-            self.heading, ':', self.render())
+            "</div>",
+            self.heading,
+            ":",
+            self.render(),
+        )

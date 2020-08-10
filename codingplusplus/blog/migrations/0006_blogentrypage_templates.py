@@ -6,13 +6,20 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('blog', '0005_auto_20200706_1213'),
+        ("blog", "0005_auto_20200706_1213"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='blogentrypage',
-            name='templates',
-            field=models.CharField(choices=[('blog/blog_entry_page.html', 'Stable template'), ('blog/blog_entry_page_exp.html', 'unstable template')], default='blog/blog_entry_page.html', max_length=255),
+            model_name="blogentrypage",
+            name="templates",
+            field=models.CharField(
+                choices=[
+                    ("blog/blog_entry_page.html", "Stable template"),
+                    ("blog/blog_entry_page_exp.html", "unstable template"),
+                ],
+                default="blog/blog_entry_page.html",
+                max_length=255,
+            ),
         ),
     ]

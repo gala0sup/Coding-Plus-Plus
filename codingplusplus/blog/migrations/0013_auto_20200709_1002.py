@@ -7,13 +7,19 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('blog', '0012_auto_20200709_0958'),
+        ("blog", "0012_auto_20200709_0958"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='blogentrypage',
-            name='category',
-            field=models.ForeignKey(default=1, null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='+', to='blog.BlogPageCategory'),
+            model_name="blogentrypage",
+            name="category",
+            field=models.ForeignKey(
+                default=1,
+                null=True,
+                on_delete=django.db.models.deletion.SET_NULL,
+                related_name="+",
+                to="blog.BlogPageCategory",
+            ),
         ),
     ]

@@ -10,29 +10,162 @@ import wagtail.images.blocks
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('wagtailcore', '0045_assign_unlock_grouppagepermission'),
-        ('blog', '0001_initial'),
+        ("wagtailcore", "0045_assign_unlock_grouppagepermission"),
+        ("blog", "0001_initial"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='NavBar',
+            name="NavBar",
             fields=[
-                ('page_ptr', models.OneToOneField(auto_created=True, on_delete=django.db.models.deletion.CASCADE, parent_link=True, primary_key=True, serialize=False, to='wagtailcore.Page')),
+                (
+                    "page_ptr",
+                    models.OneToOneField(
+                        auto_created=True,
+                        on_delete=django.db.models.deletion.CASCADE,
+                        parent_link=True,
+                        primary_key=True,
+                        serialize=False,
+                        to="wagtailcore.Page",
+                    ),
+                ),
             ],
-            options={
-                'abstract': False,
-            },
-            bases=('wagtailcore.page',),
+            options={"abstract": False,},
+            bases=("wagtailcore.page",),
         ),
         migrations.AlterField(
-            model_name='blogentrypage',
-            name='CoverImage',
-            field=wagtail.core.fields.StreamField([('cover_image', wagtail.core.blocks.StructBlock([('Image', wagtail.images.blocks.ImageChooserBlock(blank=True, null=True, required=False)), ('ImageViaUrl', wagtail.core.blocks.URLBlock(blank=True, null=True, required=False)), ('ImageOverride', wagtail.core.blocks.BooleanBlock(blank=True, help_text='Use Image Via url Instead of Image uploaded', null=True, required=False)), ('AltText', wagtail.core.blocks.TextBlock(blank=True, null=True, required=False)), ('Position', wagtail.core.blocks.ChoiceBlock(blank=True, choices=[('center', 'center'), ('bottom', 'bottom'), ('top', 'top'), ('left', 'left'), ('left-bottom', 'left bottom'), ('left-top', 'left top'), ('right', 'right'), ('right-top', 'right top'), ('right-bottom', 'right bottom')], null=True, required=False))], block_counts={'AltText': {'max_num': 1}, 'Image': {'max_num': 1}, 'ImageViaUrl': {'max_num': 1}, 'position': {'max_num': 1}}))], blank=True),
+            model_name="blogentrypage",
+            name="CoverImage",
+            field=wagtail.core.fields.StreamField(
+                [
+                    (
+                        "cover_image",
+                        wagtail.core.blocks.StructBlock(
+                            [
+                                (
+                                    "Image",
+                                    wagtail.images.blocks.ImageChooserBlock(
+                                        blank=True, null=True, required=False
+                                    ),
+                                ),
+                                (
+                                    "ImageViaUrl",
+                                    wagtail.core.blocks.URLBlock(
+                                        blank=True, null=True, required=False
+                                    ),
+                                ),
+                                (
+                                    "ImageOverride",
+                                    wagtail.core.blocks.BooleanBlock(
+                                        blank=True,
+                                        help_text="Use Image Via url Instead of Image uploaded",
+                                        null=True,
+                                        required=False,
+                                    ),
+                                ),
+                                (
+                                    "AltText",
+                                    wagtail.core.blocks.TextBlock(
+                                        blank=True, null=True, required=False
+                                    ),
+                                ),
+                                (
+                                    "Position",
+                                    wagtail.core.blocks.ChoiceBlock(
+                                        blank=True,
+                                        choices=[
+                                            ("center", "center"),
+                                            ("bottom", "bottom"),
+                                            ("top", "top"),
+                                            ("left", "left"),
+                                            ("left-bottom", "left bottom"),
+                                            ("left-top", "left top"),
+                                            ("right", "right"),
+                                            ("right-top", "right top"),
+                                            ("right-bottom", "right bottom"),
+                                        ],
+                                        null=True,
+                                        required=False,
+                                    ),
+                                ),
+                            ],
+                            block_counts={
+                                "AltText": {"max_num": 1},
+                                "Image": {"max_num": 1},
+                                "ImageViaUrl": {"max_num": 1},
+                                "position": {"max_num": 1},
+                            },
+                        ),
+                    )
+                ],
+                blank=True,
+            ),
         ),
         migrations.AlterField(
-            model_name='blogentrypage',
-            name='body',
-            field=wagtail.core.fields.StreamField([('Title', wagtail.core.blocks.CharBlock(blank=False, null=True)), ('body', wagtail.core.blocks.RichTextBlock(blank=True, null=True)), ('image', wagtail.core.blocks.StructBlock([('Image', wagtail.images.blocks.ImageChooserBlock(blank=True, null=True, required=False)), ('ImageViaUrl', wagtail.core.blocks.URLBlock(blank=True, null=True, required=False)), ('ImageOverride', wagtail.core.blocks.BooleanBlock(blank=True, help_text='Use Image Via url Instead of Image uploaded', null=True, required=False)), ('AltText', wagtail.core.blocks.TextBlock(blank=True, null=True, required=False)), ('Position', wagtail.core.blocks.ChoiceBlock(blank=True, choices=[('center', 'center'), ('bottom', 'bottom'), ('top', 'top'), ('left', 'left'), ('left-bottom', 'left bottom'), ('left-top', 'left top'), ('right', 'right'), ('right-top', 'right top'), ('right-bottom', 'right bottom')], null=True, required=False))], blank=True, max_num=1, min_num=1, null=True))]),
+            model_name="blogentrypage",
+            name="body",
+            field=wagtail.core.fields.StreamField(
+                [
+                    ("Title", wagtail.core.blocks.CharBlock(blank=False, null=True)),
+                    ("body", wagtail.core.blocks.RichTextBlock(blank=True, null=True)),
+                    (
+                        "image",
+                        wagtail.core.blocks.StructBlock(
+                            [
+                                (
+                                    "Image",
+                                    wagtail.images.blocks.ImageChooserBlock(
+                                        blank=True, null=True, required=False
+                                    ),
+                                ),
+                                (
+                                    "ImageViaUrl",
+                                    wagtail.core.blocks.URLBlock(
+                                        blank=True, null=True, required=False
+                                    ),
+                                ),
+                                (
+                                    "ImageOverride",
+                                    wagtail.core.blocks.BooleanBlock(
+                                        blank=True,
+                                        help_text="Use Image Via url Instead of Image uploaded",
+                                        null=True,
+                                        required=False,
+                                    ),
+                                ),
+                                (
+                                    "AltText",
+                                    wagtail.core.blocks.TextBlock(
+                                        blank=True, null=True, required=False
+                                    ),
+                                ),
+                                (
+                                    "Position",
+                                    wagtail.core.blocks.ChoiceBlock(
+                                        blank=True,
+                                        choices=[
+                                            ("center", "center"),
+                                            ("bottom", "bottom"),
+                                            ("top", "top"),
+                                            ("left", "left"),
+                                            ("left-bottom", "left bottom"),
+                                            ("left-top", "left top"),
+                                            ("right", "right"),
+                                            ("right-top", "right top"),
+                                            ("right-bottom", "right bottom"),
+                                        ],
+                                        null=True,
+                                        required=False,
+                                    ),
+                                ),
+                            ],
+                            blank=True,
+                            max_num=1,
+                            min_num=1,
+                            null=True,
+                        ),
+                    ),
+                ]
+            ),
         ),
     ]

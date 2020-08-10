@@ -6,13 +6,13 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('blog', '0009_blogentrypage_coverimagetype'),
+        ("blog", "0009_blogentrypage_coverimagetype"),
     ]
 
     operations = [
         migrations.RenameField(
-            model_name='blogentrypage',
-            old_name='CoverImageType',
-            new_name='ScreenWidthCoverImage',
+            model_name="blogentrypage",
+            old_name="CoverImageType",
+            new_name="ScreenWidthCoverImage",
         ),
     ]

@@ -7,49 +7,81 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('wagtailcore', '0045_assign_unlock_grouppagepermission'),
-        ('blog', '0013_auto_20200709_1002'),
+        ("wagtailcore", "0045_assign_unlock_grouppagepermission"),
+        ("blog", "0013_auto_20200709_1002"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='CodingPost',
+            name="CodingPost",
             fields=[
-                ('page_ptr', models.OneToOneField(auto_created=True, on_delete=django.db.models.deletion.CASCADE, parent_link=True, primary_key=True, serialize=False, to='wagtailcore.Page')),
+                (
+                    "page_ptr",
+                    models.OneToOneField(
+                        auto_created=True,
+                        on_delete=django.db.models.deletion.CASCADE,
+                        parent_link=True,
+                        primary_key=True,
+                        serialize=False,
+                        to="wagtailcore.Page",
+                    ),
+                ),
             ],
-            options={
-                'abstract': False,
-            },
-            bases=('wagtailcore.page',),
+            options={"abstract": False,},
+            bases=("wagtailcore.page",),
         ),
         migrations.CreateModel(
-            name='GamingPost',
+            name="GamingPost",
             fields=[
-                ('page_ptr', models.OneToOneField(auto_created=True, on_delete=django.db.models.deletion.CASCADE, parent_link=True, primary_key=True, serialize=False, to='wagtailcore.Page')),
+                (
+                    "page_ptr",
+                    models.OneToOneField(
+                        auto_created=True,
+                        on_delete=django.db.models.deletion.CASCADE,
+                        parent_link=True,
+                        primary_key=True,
+                        serialize=False,
+                        to="wagtailcore.Page",
+                    ),
+                ),
             ],
-            options={
-                'abstract': False,
-            },
-            bases=('wagtailcore.page',),
+            options={"abstract": False,},
+            bases=("wagtailcore.page",),
         ),
         migrations.CreateModel(
-            name='NewsPost',
+            name="NewsPost",
             fields=[
-                ('page_ptr', models.OneToOneField(auto_created=True, on_delete=django.db.models.deletion.CASCADE, parent_link=True, primary_key=True, serialize=False, to='wagtailcore.Page')),
+                (
+                    "page_ptr",
+                    models.OneToOneField(
+                        auto_created=True,
+                        on_delete=django.db.models.deletion.CASCADE,
+                        parent_link=True,
+                        primary_key=True,
+                        serialize=False,
+                        to="wagtailcore.Page",
+                    ),
+                ),
             ],
-            options={
-                'abstract': False,
-            },
-            bases=('wagtailcore.page',),
+            options={"abstract": False,},
+            bases=("wagtailcore.page",),
         ),
         migrations.CreateModel(
-            name='posts',
+            name="posts",
             fields=[
-                ('page_ptr', models.OneToOneField(auto_created=True, on_delete=django.db.models.deletion.CASCADE, parent_link=True, primary_key=True, serialize=False, to='wagtailcore.Page')),
+                (
+                    "page_ptr",
+                    models.OneToOneField(
+                        auto_created=True,
+                        on_delete=django.db.models.deletion.CASCADE,
+                        parent_link=True,
+                        primary_key=True,
+                        serialize=False,
+                        to="wagtailcore.Page",
+                    ),
+                ),
             ],
-            options={
-                'abstract': False,
-            },
-            bases=('wagtailcore.page',),
+            options={"abstract": False,},
+            bases=("wagtailcore.page",),
         ),
     ]

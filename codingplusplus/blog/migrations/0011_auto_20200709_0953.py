@@ -7,22 +7,29 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('blog', '0010_auto_20200708_2157'),
+        ("blog", "0010_auto_20200708_2157"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='blogentrypage',
-            name='ScreenWidthCoverImage',
-            field=models.BooleanField(default=False, help_text='Cover Image Should Be of Screen Width', verbose_name=''),
+            model_name="blogentrypage",
+            name="ScreenWidthCoverImage",
+            field=models.BooleanField(
+                default=False,
+                help_text="Cover Image Should Be of Screen Width",
+                verbose_name="",
+            ),
         ),
-        migrations.RemoveField(
-            model_name='blogentrypage',
-            name='category',
-        ),
+        migrations.RemoveField(model_name="blogentrypage", name="category",),
         migrations.AddField(
-            model_name='blogentrypage',
-            name='category',
-            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='+', to='blog.BlogPageCategory'),
+            model_name="blogentrypage",
+            name="category",
+            field=models.ForeignKey(
+                blank=True,
+                null=True,
+                on_delete=django.db.models.deletion.SET_NULL,
+                related_name="+",
+                to="blog.BlogPageCategory",
+            ),
         ),
     ]

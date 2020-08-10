@@ -6,14 +6,12 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('wagtailcore', '0045_assign_unlock_grouppagepermission'),
-        ('wagtailforms', '0004_add_verbose_name_plural'),
-        ('wagtailredirects', '0006_redirect_increase_max_length'),
-        ('blog', '0002_auto_20200629_2140'),
+        ("wagtailcore", "0045_assign_unlock_grouppagepermission"),
+        ("wagtailforms", "0004_add_verbose_name_plural"),
+        ("wagtailredirects", "0006_redirect_increase_max_length"),
+        ("blog", "0002_auto_20200629_2140"),
     ]
 
     operations = [
-        migrations.DeleteModel(
-            name='NavBar',
-        ),
+        migrations.DeleteModel(name="NavBar",),
     ]

@@ -12,32 +12,169 @@ class Migration(migrations.Migration):
     initial = True
 
     dependencies = [
-        ('wagtailcore', '0045_assign_unlock_grouppagepermission'),
+        ("wagtailcore", "0045_assign_unlock_grouppagepermission"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='BlogEntryPage',
+            name="BlogEntryPage",
             fields=[
-                ('page_ptr', models.OneToOneField(auto_created=True, on_delete=django.db.models.deletion.CASCADE, parent_link=True, primary_key=True, serialize=False, to='wagtailcore.Page')),
-                ('created', models.DateTimeField(auto_now_add=True)),
-                ('updated', models.DateField(auto_now=True)),
-                ('body', wagtail.core.fields.StreamField([('Title', wagtail.core.blocks.CharBlock(blank=False, null=True)), ('body', wagtail.core.blocks.RichTextBlock(blank=True, null=True)), ('image', wagtail.core.blocks.StructBlock([('Image', wagtail.images.blocks.ImageChooserBlock(blank=True, null=True, required=False)), ('ImageViaUrl', wagtail.core.blocks.URLBlock(blank=True, null=True, required=False)), ('AltText', wagtail.core.blocks.TextBlock(blank=True, null=True, required=False)), ('Position', wagtail.core.blocks.ChoiceBlock(blank=True, choices=[('center', 'center'), ('bottom', 'bottom'), ('top', 'top'), ('left', 'left'), ('left-bottom', 'left bottom'), ('left-top', 'left top'), ('right', 'right'), ('right-top', 'right top'), ('right-bottom', 'right bottom')], null=True, required=False))], blank=True, max_num=1, min_num=1, null=True))])),
-                ('CoverImage', wagtail.core.fields.StreamField([('cover_image', wagtail.core.blocks.StructBlock([('Image', wagtail.images.blocks.ImageChooserBlock(blank=True, null=True, required=False)), ('ImageViaUrl', wagtail.core.blocks.URLBlock(blank=True, null=True, required=False)), ('AltText', wagtail.core.blocks.TextBlock(blank=True, null=True, required=False)), ('Position', wagtail.core.blocks.ChoiceBlock(blank=True, choices=[('center', 'center'), ('bottom', 'bottom'), ('top', 'top'), ('left', 'left'), ('left-bottom', 'left bottom'), ('left-top', 'left top'), ('right', 'right'), ('right-top', 'right top'), ('right-bottom', 'right bottom')], null=True, required=False))], block_counts={'AltText': {'max_num': 1}, 'Image': {'max_num': 1}, 'ImageViaUrl': {'max_num': 1}, 'position': {'max_num': 1}}))], blank=True)),
+                (
+                    "page_ptr",
+                    models.OneToOneField(
+                        auto_created=True,
+                        on_delete=django.db.models.deletion.CASCADE,
+                        parent_link=True,
+                        primary_key=True,
+                        serialize=False,
+                        to="wagtailcore.Page",
+                    ),
+                ),
+                ("created", models.DateTimeField(auto_now_add=True)),
+                ("updated", models.DateField(auto_now=True)),
+                (
+                    "body",
+                    wagtail.core.fields.StreamField(
+                        [
+                            (
+                                "Title",
+                                wagtail.core.blocks.CharBlock(blank=False, null=True),
+                            ),
+                            (
+                                "body",
+                                wagtail.core.blocks.RichTextBlock(
+                                    blank=True, null=True
+                                ),
+                            ),
+                            (
+                                "image",
+                                wagtail.core.blocks.StructBlock(
+                                    [
+                                        (
+                                            "Image",
+                                            wagtail.images.blocks.ImageChooserBlock(
+                                                blank=True, null=True, required=False
+                                            ),
+                                        ),
+                                        (
+                                            "ImageViaUrl",
+                                            wagtail.core.blocks.URLBlock(
+                                                blank=True, null=True, required=False
+                                            ),
+                                        ),
+                                        (
+                                            "AltText",
+                                            wagtail.core.blocks.TextBlock(
+                                                blank=True, null=True, required=False
+                                            ),
+                                        ),
+                                        (
+                                            "Position",
+                                            wagtail.core.blocks.ChoiceBlock(
+                                                blank=True,
+                                                choices=[
+                                                    ("center", "center"),
+                                                    ("bottom", "bottom"),
+                                                    ("top", "top"),
+                                                    ("left", "left"),
+                                                    ("left-bottom", "left bottom"),
+                                                    ("left-top", "left top"),
+                                                    ("right", "right"),
+                                                    ("right-top", "right top"),
+                                                    ("right-bottom", "right bottom"),
+                                                ],
+                                                null=True,
+                                                required=False,
+                                            ),
+                                        ),
+                                    ],
+                                    blank=True,
+                                    max_num=1,
+                                    min_num=1,
+                                    null=True,
+                                ),
+                            ),
+                        ]
+                    ),
+                ),
+                (
+                    "CoverImage",
+                    wagtail.core.fields.StreamField(
+                        [
+                            (
+                                "cover_image",
+                                wagtail.core.blocks.StructBlock(
+                                    [
+                                        (
+                                            "Image",
+                                            wagtail.images.blocks.ImageChooserBlock(
+                                                blank=True, null=True, required=False
+                                            ),
+                                        ),
+                                        (
+                                            "ImageViaUrl",
+                                            wagtail.core.blocks.URLBlock(
+                                                blank=True, null=True, required=False
+                                            ),
+                                        ),
+                                        (
+                                            "AltText",
+                                            wagtail.core.blocks.TextBlock(
+                                                blank=True, null=True, required=False
+                                            ),
+                                        ),
+                                        (
+                                            "Position",
+                                            wagtail.core.blocks.ChoiceBlock(
+                                                blank=True,
+                                                choices=[
+                                                    ("center", "center"),
+                                                    ("bottom", "bottom"),
+                                                    ("top", "top"),
+                                                    ("left", "left"),
+                                                    ("left-bottom", "left bottom"),
+                                                    ("left-top", "left top"),
+                                                    ("right", "right"),
+                                                    ("right-top", "right top"),
+                                                    ("right-bottom", "right bottom"),
+                                                ],
+                                                null=True,
+                                                required=False,
+                                            ),
+                                        ),
+                                    ],
+                                    block_counts={
+                                        "AltText": {"max_num": 1},
+                                        "Image": {"max_num": 1},
+                                        "ImageViaUrl": {"max_num": 1},
+                                        "position": {"max_num": 1},
+                                    },
+                                ),
+                            )
+                        ],
+                        blank=True,
+                    ),
+                ),
             ],
-            options={
-                'abstract': False,
-            },
-            bases=('wagtailcore.page',),
+            options={"abstract": False,},
+            bases=("wagtailcore.page",),
         ),
         migrations.CreateModel(
-            name='BlogIndexPage',
+            name="BlogIndexPage",
             fields=[
-                ('page_ptr', models.OneToOneField(auto_created=True, on_delete=django.db.models.deletion.CASCADE, parent_link=True, primary_key=True, serialize=False, to='wagtailcore.Page')),
+                (
+                    "page_ptr",
+                    models.OneToOneField(
+                        auto_created=True,
+                        on_delete=django.db.models.deletion.CASCADE,
+                        parent_link=True,
+                        primary_key=True,
+                        serialize=False,
+                        to="wagtailcore.Page",
+                    ),
+                ),
             ],
-            options={
-                'abstract': False,
-            },
-            bases=('wagtailcore.page',),
+            options={"abstract": False,},
+            bases=("wagtailcore.page",),
         ),
     ]

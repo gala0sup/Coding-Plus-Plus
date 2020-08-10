@@ -6,13 +6,15 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('blog', '0008_auto_20200708_2120'),
+        ("blog", "0008_auto_20200708_2120"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='blogentrypage',
-            name='CoverImageType',
-            field=models.BooleanField(default=True, help_text='screen width cover image'),
+            model_name="blogentrypage",
+            name="CoverImageType",
+            field=models.BooleanField(
+                default=True, help_text="screen width cover image"
+            ),
         ),
     ]

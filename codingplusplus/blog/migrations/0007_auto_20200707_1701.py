@@ -7,29 +7,33 @@ import modelcluster.fields
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('blog', '0006_blogentrypage_templates'),
+        ("blog", "0006_blogentrypage_templates"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='BlogPageCategory',
+            name="BlogPageCategory",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=255)),
-                ('slug', models.SlugField(max_length=80, unique=True)),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("name", models.CharField(max_length=255)),
+                ("slug", models.SlugField(max_length=80, unique=True)),
             ],
-            options={
-                'verbose_name': 'Category',
-                'verbose_name_plural': 'Categories',
-            },
+            options={"verbose_name": "Category", "verbose_name_plural": "Categories",},
         ),
-        migrations.RemoveField(
-            model_name='blogentrypage',
-            name='templates',
-        ),
+        migrations.RemoveField(model_name="blogentrypage", name="templates",),
         migrations.AddField(
-            model_name='blogentrypage',
-            name='categories',
-            field=modelcluster.fields.ParentalManyToManyField(to='blog.BlogPageCategory'),
+            model_name="blogentrypage",
+            name="categories",
+            field=modelcluster.fields.ParentalManyToManyField(
+                to="blog.BlogPageCategory"
+            ),
         ),
     ]

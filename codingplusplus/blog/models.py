@@ -45,7 +45,10 @@ class BlogEntryPageTag(TaggedItemBase):
 
 class AddImageValue(blocks.StructValue):
     def get_img_tag(self, extra_css=""):
-        ImageUrl = self.get("Image").get_rendition("original").url
+        try:
+            ImageUrl = self.get("Image").get_rendition("original").url
+        except:
+            pass
         ImageViaUrl = self.get("ImageViaUrl")
         ImageOverride = self.get("ImageOverride")
         AltText = self.get("AltText")
@@ -104,7 +107,7 @@ class BlogIndexPage(Page):
         context["blogpages"] = blogpages
         return context
 
-    parent_page_types = []
+    parent_page_types = [Page]
 
 
 class posts(Page):

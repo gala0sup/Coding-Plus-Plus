@@ -25,6 +25,5 @@
     "rimraf": "^3.0.2",
     "watch": "^1.0.2"
   },
-  "dependencies": {
-  }
+  "dependencies": {}
 }

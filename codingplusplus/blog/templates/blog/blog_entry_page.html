@@ -4,7 +4,7 @@
 
 
 {% block content %}
-    {% if page.ScreenWidthCoverImage == Flase %}
+    {% if page.ScreenWidthCoverImage is False %}
         <div class="post 
                     container 
                     mx-auto 
@@ -12,32 +12,21 @@
                     text-justify">
             <div class="CoverImage 
                         hidden
-
                         sm:flex
                         sm:justify-center
                         sm:h-64
                         sm:mt-2
                         sm:shadow-md
                         sm:bg-gray-100
-
                         md:shadow-lg
-                        
                         lg:shadow-xl
                         lg:h-cover  
-
                         xl:shadow-2xl">
-                
-
-
-                <div class="
-                            imgContainer 
+                <div class="imgContainer 
                             h-full 
                             w-full">
-
                     {% for block in page.CoverImage %}
-
-                        <img class="
-                                    h-full 
+                        <img class="h-full 
                                     w-full
                                     sm:rounded" {{block.value.get_img_tag}}>
                     {% endfor %}
@@ -71,7 +60,7 @@
         </div>
         <div class="spacer h-8"></div>
     {% else %}
-        <!--Copy-->
+        <!--screen width Cover Image-->
         <div class="CoverImage 
                     hidden
                     sm:m-0
@@ -81,8 +70,7 @@
                     sm:h-64
                     sm:overflow-hidden
                     lg:h-cover">
-            <div class="
-                        imgContainer
+            <div class="imgContainer
                         object-fill
                         w-full
                         h-full">

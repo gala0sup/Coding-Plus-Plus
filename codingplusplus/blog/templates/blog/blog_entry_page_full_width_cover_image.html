@@ -1,0 +1,67 @@
+{% extends 'blog\base.html' %}
+{% load wagtailcore_tags wagtailimages_tags define_action %}
+{% block body_class %}class="bg-gray-100"{% endblock body_class %}
+
+
+{% block content %}
+<!--screen width Cover Image blog_entry_page-->
+    <div class="CoverImage 
+                hidden
+                sm:m-0
+                sm:p-0
+                sm:block
+                sm:w-full
+                sm:h-64
+                sm:overflow-hidden
+                lg:h-cover">
+        <div class="imgContainer
+                    object-fill
+                    w-full
+                    h-full">
+
+            {% for block in page.CoverImage %}
+
+                <img class="
+                            w-full
+                            h-full" {{block.value.get_img_tag}}>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="post
+                flex
+                text-justify">
+
+        <div class="post-center pl-4">
+            <div class="explorer mt-8 bg-gray-300 px-4 rounded-md inline-block shadow-sm">
+                <!--explorer-->
+                <a class="font-mono font-semibold text-gray-800 hover:bg-gray-400" href="{{page.get_site.root_url}}">HOME</a>
+                &gt;
+                <a class="font-mono font-semibold text-gray-800 hover:bg-gray-400" href="{{page.get_parent.get_url}}">{{page.get_parent.slug | upper}}</a>
+            </div>
+            <div class="time_stamps" >
+                <p class="font-mono font-semibold text-gray-600 mt-4 mb-4">last updated at {{page.updated}}</p>
+            </div>
+
+            <div class="article">
+                <div class = "py-2">
+                    {% for field in page.body %}
+                        {% if field.block_type == 'Title' %}
+                            <div class=" mt-10 antialiased font-mono text-5xl flex">
+                                {{field.value}}
+                            </div>
+                        {% elif  field.block_type == 'body'%}
+                            <div class="container w-full leading-relaxed mt-4 ">
+                                {{field.value}}
+                            </div>
+                        {% else %}
+                            {% include_block field %}
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="spacer h-8"></div>
+{% endblock content %}

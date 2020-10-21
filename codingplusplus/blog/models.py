@@ -108,9 +108,15 @@ class BlogIndexPage(Page):
         return context
 
     parent_page_types = [Page]
+    subpage_types = [
+        "blog.posts",
+        "blog.CodingPost",
+        "blog.NewsPost",
+        "blog.GamingPost",
+    ]
 
 
-class posts(Page):
+class Posts(Page):
 
     slug = "posts"
 
@@ -121,6 +127,7 @@ class posts(Page):
         return context
 
     parent_page_types = ["blog.BlogIndexPage"]
+    max_count = 1
 
     @property
     def template(self):
@@ -138,6 +145,7 @@ class CodingPost(Page):
         return context
 
     parent_page_types = ["blog.BlogIndexPage"]
+    max_count = 1
 
     @property
     def template(self):
@@ -155,6 +163,7 @@ class NewsPost(Page):
         return context
 
     parent_page_types = ["blog.BlogIndexPage"]
+    max_count = 1
 
     @property
     def template(self):
@@ -172,6 +181,7 @@ class GamingPost(Page):
         return context
 
     parent_page_types = ["blog.BlogIndexPage"]
+    max_count = 1
 
     @property
     def template(self):
@@ -259,3 +269,25 @@ class BlogEntryPage(Page):
         "blog.NewsPost",
         "blog.GamingPost",
     ]
+
+    @property
+    def template(self):
+        if self.ScreenWidthCoverImage:
+            return "blog/blog_entry_page_full_width_cover_image.html"
+        else:
+            return "blog/blog_entry_page.html"
+
+    def get_context(self, request):
+        context = super().get_context(request)
+        siblings = []
+        last = self.get_last_sibling()
+        if last:
+            if last.specific != self:
+                siblings.append(self.get_last_sibling())
+        if self.get_prev_sibling():
+            siblings.append(self.get_prev_sibling())
+        if self.get_next_sibling():
+            siblings.append(self.get_next_sibling())
+        context["siblings"] = siblings
+        return context
+

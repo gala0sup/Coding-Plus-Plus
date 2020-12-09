@@ -3,6 +3,7 @@ venv
 *.bat
 __pycache__
 *_tmp_*
+codingplusplus/blog/static_src/src/
 # Django #
 
 *.log

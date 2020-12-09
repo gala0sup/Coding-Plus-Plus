@@ -43,7 +43,7 @@ span.text{
     text-shadow : 2px 0px 10px #2C261A , 4px 2px 15px  #1a202c , -4px -2px 15px  #1a202c
 } */
 .sibling-img{
-    position:relative;
+    display:inline-block;
 }
 .sibling-img::after{
     content:'';
@@ -52,8 +52,16 @@ span.text{
     width:100%; height:100%;
     display:inline-block;
     
-    background: rgb(76,44,37);
-    background: linear-gradient(0deg, rgba(76,44,37,0.9780287114845938) 0%, rgba(185,189,173,1) 100%);
+    border-radius: 1.5rem;
+    background: rgba(255,255,255,0.24);
+    background: -moz-linear-gradient(top, rgba(255,255,255,0.24) 0%, rgba(0,0,0,0.6) 48%, rgba(0,0,0,1) 100%);
+    background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(255,255,255,0.24)), color-stop(48%, rgba(0,0,0,0.6)), color-stop(100%, rgba(0,0,0,1)));
+    background: -webkit-linear-gradient(top, rgba(255,255,255,0.24) 0%, rgba(0,0,0,0.6) 48%, rgba(0,0,0,1) 100%);
+    background: -o-linear-gradient(top, rgba(255,255,255,0.24) 0%, rgba(0,0,0,0.6) 48%, rgba(0,0,0,1) 100%);
+    background: -ms-linear-gradient(top, rgba(255,255,255,0.24) 0%, rgba(0,0,0,0.6) 48%, rgba(0,0,0,1) 100%);
+    background: linear-gradient(to bottom, rgba(255,255,255,0.24) 0%, rgba(0,0,0,0.6) 48%, rgba(0,0,0,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#000000', GradientType=0 );
+    
 }
 @media (min-width : 1024px){
     .navbarul:hover > li button:not(:hover) {
@@ -67,6 +75,22 @@ span.text{
         -webkit-box-shadow: 0px 0px 30px 2px rgba(117,133,179,1);
         -moz-box-shadow: 0px 0px 30px 2px rgba(117,133,179,1);
         box-shadow: 0px 0px 30px 2px rgba(117,133,179,1);
+    }
+    .sibling-info{
+        height: 25%;
+        transition: height 0.5s;
+        
+    }
+    .sibling-info-body{
+        transition-property: display;
+        transition-duration: 0.2s;
+        transition-delay: 0.5s;
+    }
+    .sibling-info:hover{
+        height: 150px;
+    }
+    .sibling-info:hover .sibling-info-body{
+        display: inline;
     }
 }   
 

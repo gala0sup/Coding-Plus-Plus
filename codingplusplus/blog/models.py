@@ -15,7 +15,7 @@ from wagtail.snippets.models import register_snippet
 
 from .edit_handlers import ReadOnlyPanel
 
-
+import pathlib
 from django.utils.safestring import mark_safe
 
 
@@ -279,15 +279,20 @@ class BlogEntryPage(Page):
 
     def get_context(self, request):
         context = super().get_context(request)
-        siblings = []
+        recents = []
         last = self.get_last_sibling()
-        if last:
-            if last.specific != self:
-                siblings.append(self.get_last_sibling())
-        if self.get_prev_sibling():
-            siblings.append(self.get_prev_sibling())
-        if self.get_next_sibling():
-            siblings.append(self.get_next_sibling())
-        context["siblings"] = siblings
+
+        if last.specific != self:
+
+            recents.append(self.get_last_sibling())
+            recents.append(self.get_prev_sibling())
+            recents.append(self.get_next_sibling())
+        else:
+
+            recents.append(self.get_prev_sibling())
+            recents.append(self.get_next_sibling())
+            recents.append(self.get_prev_sibling().get_prev_sibling())
+
+        context["recents"] = recents
         return context
 

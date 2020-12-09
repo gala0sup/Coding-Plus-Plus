@@ -1,4 +1,4 @@
-{% extends 'blog\base.html' %}
+{% extends 'blog/base.html' %}
 {% load wagtailcore_tags wagtailimages_tags define_action %}
 {% block body_class %}class="bg-gray-100"{% endblock body_class %}
 
@@ -60,21 +60,26 @@
                 {% endfor %}
             </div>
         </div>
-        <div class="siblings flex flex-row space-x-4 mt-20">
-            {%for post in siblings %}
-                <div class="sibling relative">
-                    {% for block in post.specific.CoverImage %}
-                    <div class="sibling-img h-56 w-56">
-                        <img {{block.value.get_img_tag}}>
-                    </div>
-                    {% endfor %}
-                    <div class="sibling-info absolute -mt-32 w-56 p-4">
-                        <a href="{{post.get_url}}">{{post.title}}</a>
-                        {% for block in post.specific.body %}
-                            {{block.value | truncatewords:10}}
+        <div class="siblings flex flex-row space-x-8 mt-20">
+            {%for post in recents %}
+                {% if post != None %}
+                    <div class="sibling relative h-64 w-56">
+                        {% for block in post.specific.CoverImage %}
+                        <div class="sibling-img h-full w-full">
+                            <img  class="object-cover h-full w-full rounded-3xl" {{block.value.get_img_tag}}>
+                        </div>
                         {% endfor %}
+                        <p class="tags absolute px-4 top-0 m-4 right-0 bg-red-500 text-white rounded-full">tags</p>
+                        <div class="sibling-info absolute z-10 w-full p-4 bottom-0  text-white bg-pink-500 bg-opacity-75 rounded-3xl">
+                            <a class="text-2xl" href="{{post.get_url}}">{{post.title | truncatewords:3 | capfirst }}</a>
+                            <div class="sibling-info-body pt-4 hidden">
+                                {% for block in post.specific.body %}   
+                                        {{block.value | truncatewords:10}}</p>
+                                {% endfor %}
+                            </div>
+                        </div>
                     </div>
-                </div>
+                {% endif %}
             {% endfor %}
         </div>
     </div>

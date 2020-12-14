@@ -1,6 +1,4 @@
 window.addEventListener("scroll", ScrollBarProgress);
-
-
 function ScrollBarProgress() {
   var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
   var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
@@ -9,10 +7,20 @@ function ScrollBarProgress() {
   document.getElementById("myBar").style.width = scrolled + "%";
 }
 
-// function HeaderShadow(){
-//     if (scrolled > 0) {
-//         document.getElementById('header').style.boxShadow = "0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06)";
-//     } else {
-//         document.getElementById('header').style.boxShadow = "0 0 0 1px rgba(0, 0, 0, 0.05)";
-//     }
-// }
+var debugDiv = document.getElementById("debug_info");
+var screen_dims = document.createTextNode(String((window).innerWidth)+"x"+String(window.innerHeight));
+debugDiv.appendChild(screen_dims)
+
+// w3school LOL 
+
+var prevScrollpos = window.pageYOffset;
+window.onscroll = function() {
+  var curScrollPos = window.pageYOffset;
+  if (prevScrollpos > curScrollPos) {
+    document.getElementById("navbar").style.top = "0";
+  } else {
+    document.getElementById("navbar").style.top = String(-document.getElementById("navbar_to_hide").offsetHeight)+"px";
+  }
+  prevScrollpos = curScrollPos;
+
+}

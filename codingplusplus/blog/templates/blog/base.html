@@ -32,12 +32,12 @@
         {% wagtailuserbar %}
 		
         {% block header %}
-            <div class="header">
-                <div class="shadow-xs bg-white fixed w-full -mt-2 z-50" id="header">
-                    <div class="container mx-auto">
-                        <div class="brand mt-2">
+            <div class="header fixed w-full z-50" id="navbar">
+                <div class="bg-white w-full top-0">
+                    <div class="container mx-auto" id="navbar_to_hide">
+                        <div class="brand">
                             <a class="site-name text-4xl" href="/">
-                                <span class="text">Coding Plus Plus</span>
+                                <span class="text">Coding Plus Plus </span>
                             </a>
                         </div>
                         {% include "blog/nav_bar.html" %}
@@ -48,19 +48,24 @@
                     </div>
                 </div>
             </div>
-            <div class="empty h-24"></div>
-            <div class="empty h-12"></div>
+            <div id="navbar_spacer"></div>
+            <script type="text/javascript">
+                px = document.getElementById("navbar").offsetHeight;
+                document.getElementById("navbar_spacer").style.height += String(px+4)+"px";
+            </script>
         {% endblock header %}
 
         {% block content %}
         {% endblock %}
 
         {% block footer %}
-            <div class="footer">
-                <div class="flex justify-center shadow-xs bg-gray-900 w-full h-auto z-50">
-                    <a class="p-2 text-white" href="/">Home</a>
+            <footer>
+                <div class="fixed left-0 bottom-0 w-full z-99">
+                    <div class="flex justify-center shadow-xs bg-gray-900 w-full h-full">
+                        <a class="p-2 text-white" href="/">Home</a>
+                    </div>
                 </div>
-            </div>
+            </footer>
         {% endblock footer %}
 
 

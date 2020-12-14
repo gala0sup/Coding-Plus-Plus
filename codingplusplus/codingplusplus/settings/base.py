@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "livereload",
     "blog",
 ]
 
@@ -58,6 +59,7 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "django.middleware.security.SecurityMiddleware",
     "wagtail.contrib.redirects.middleware.RedirectMiddleware",
+    "livereload.middleware.LiveReloadScript",
 ]
 
 ROOT_URLCONF = "codingplusplus.urls"
@@ -153,3 +155,4 @@ BASE_URL = "http://example.com"
 TAILWIND_APP_NAME = "blog"
 
 NPM_BIN_PATH = "D:\\Program Files\\nodejs\\npm.cmd"
+LIVERELOAD_HOST = "10.9.8.9"

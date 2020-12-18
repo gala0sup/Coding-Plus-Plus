@@ -1,0 +1,14 @@
+{% with value.image as image%}    
+    {% if image.Screen_Width_Cover_Image == True %}
+    <div class="CoverImage hidden sm:m-0 sm:p-0 sm:block sm:w-full lg:h-cover">
+        <img class="object-cover w-full h-cover" {{image.get_img_tag}}>
+    </div>
+    {% else %}
+    <div class="CoverImage container mx-auto  hidden sm:flex sm:justify-center sm:h-64 sm:mt-2 sm:shadow-md sm:bg-gray-100 md:shadow-lg lg:shadow-xl lg:h-96 xl:shadow-2xl">
+        <div class="imgContainer h-full w-full">
+            <img class="h-full w-full sm:rounded" {{image.get_img_tag}}>
+
+        </div>
+    </div>
+    {% endif %}
+{%endwith%}

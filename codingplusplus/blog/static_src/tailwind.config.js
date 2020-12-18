@@ -4,6 +4,9 @@ module.exports = {
   theme: {
     extend: {
     },
+    height:{
+      cover : "50em",
+    },
   },
   variants: {
     extend: {

@@ -46,13 +46,15 @@ class BlogEntryPageTag(TaggedItemBase):
 class AddImageValue(blocks.StructValue):
     def get_img_tag(self, extra_css=""):
         try:
+            has_image = True
             ImageUrl = self.get("Image").get_rendition("original").url
         except:
+            has_image = False
             pass
-        ImageViaUrl = self.get("ImageViaUrl")
-        ImageOverride = self.get("ImageOverride")
-        AltText = self.get("AltText")
-        if ImageOverride == False:
+        ImageViaUrl = self.get("Image_Via_Url")
+        ImageOverride = self.get("Image_Override")
+        AltText = self.get("Alt_Text")
+        if ImageOverride == False and has_image:
             return mark_safe(str(" src=" + f'"{ImageUrl}"' + " alt=" + f'"{AltText}"'))
         else:
             return mark_safe(
@@ -62,14 +64,19 @@ class AddImageValue(blocks.StructValue):
 
 class AddImage(blocks.StructBlock):
     Image = ImageChooserBlock(required=False, null=True, blank=True)
-    ImageViaUrl = blocks.URLBlock(required=False, null=True, blank=True)
-    ImageOverride = blocks.BooleanBlock(
+    Image_Via_Url = blocks.URLBlock(required=False, null=True, blank=True)
+    Image_Override = blocks.BooleanBlock(
         required=False,
         null=True,
         blank=True,
         help_text="Use Image Via url Instead of Image uploaded",
     )
-    AltText = blocks.TextBlock(required=False, null=True, blank=True)
+    Screen_Width_Cover_Image = blocks.BooleanBlock(
+        required=False,
+        help_text="Cover Image Should Be of Screen Width",
+    )
+
+    Alt_Text = blocks.TextBlock(required=False, null=True, blank=True)
     Position = blocks.ChoiceBlock(
         choices=[
             ("center", "center"),
@@ -82,13 +89,14 @@ class AddImage(blocks.StructBlock):
         blank=True,
         help_text="No Effect On Cover Image",
     )
-    ClearFix = blocks.BooleanBlock(
+    Clear_Fix = blocks.BooleanBlock(
         required=False,
         null=True,
         blank=True,
         help_text="Pushes content Down instead of wraping around it",
     )
-
+    def func(self):
+        return str("<p>asdsadad</p>")
     class Meta:
         icon = "image"
         label = "Add Image Block"
@@ -99,6 +107,18 @@ class AddImage(blocks.StructBlock):
         value_class = AddImageValue
         closed = True
 
+class CoverImageBlock(blocks.StructBlock):
+    image = AddImage(
+                        block_counts={
+                            "Image": {"max_num": 1},
+                            "ImageViaUrl": {"max_num": 1},
+                            "AltText": {"max_num": 1},
+                            "position": {"max_num": 1},
+                        }
+                    )
+
+    class Meta:
+        template='blocks/cover_image.html'
 
 class BlogIndexPage(Page):
     def get_context(self, request):
@@ -215,30 +235,15 @@ class BlogEntryPage(Page):
             [
                 (
                     "cover_image",
-                    AddImage(
-                        block_counts={
-                            "Image": {"max_num": 1},
-                            "ImageViaUrl": {"max_num": 1},
-                            "AltText": {"max_num": 1},
-                            "position": {"max_num": 1},
-                        }
-                    ),
-                )
+                    CoverImageBlock()
+                ),
             ],
             max_num=1,
             min_num=1,
         ),
         verbose_name="Cover Image",
+        
     )
-
-    ScreenWidthCoverImage = models.BooleanField(
-        null=False,
-        blank=False,
-        default=False,
-        help_text="Cover Image Should Be of Screen Width",
-        verbose_name="",
-    )
-
     content_panels = Page.content_panels + [
         MultiFieldPanel(
             [FieldPanel("tags"), FieldPanel("category", widget=forms.RadioSelect)],
@@ -248,7 +253,6 @@ class BlogEntryPage(Page):
         MultiFieldPanel(
             [
                 StreamFieldPanel("CoverImage", classname="full"),
-                FieldPanel("ScreenWidthCoverImage", classname="full"),
                 StreamFieldPanel("body", classname="full"),
             ],
             heading="Main Content Of post",
@@ -269,13 +273,6 @@ class BlogEntryPage(Page):
         "blog.NewsPost",
         "blog.GamingPost",
     ]
-
-    @property
-    def template(self):
-        if self.ScreenWidthCoverImage:
-            return "blog/blog_entry_page_full_width_cover_image.html"
-        else:
-            return "blog/blog_entry_page.html"
 
     def get_context(self, request):
         context = super().get_context(request)

@@ -5,34 +5,8 @@
 
 {% block content %}
 <!--blog_entry_page-->
-    <div class="post 
-                container 
-                mx-auto 
-                px-4 
-                text-justify">
-        <div class="CoverImage 
-                    hidden
-                    sm:flex
-                    sm:justify-center
-                    sm:h-64
-                    sm:mt-2
-                    sm:shadow-md
-                    sm:bg-gray-100
-                    md:shadow-lg
-                    lg:shadow-xl
-                    lg:h-full  
-                    xl:shadow-2xl">
-            <div class="imgContainer 
-                        h-full 
-                        w-full">
-                {% for block in page.CoverImage %}
-                    <img class="h-full 
-                                w-full
-                                sm:rounded" {{block.value.get_img_tag}}>
-                {% endfor %}
-            </div>
-        </div>
-
+    {%include_block page.CoverImage%}
+    <div class="post container mx-auto px-4 text-justify">
         <div class="explorer mt-8 bg-gray-300 px-4 rounded-md inline-block shadow-sm">
             <!--explorer-->
             <a class="font-mono font-semibold text-gray-800" href="{{page.get_site.root_url}}">HOME</a>
@@ -46,22 +20,27 @@
         <div id="debug_info"></div>
         <div class="article">
             <div class="py-2">
-                {% for field in page.body %}
-                    {% if field.block_type == 'Title' %}
-                        <div class=" mt-10 antialiased font-mono text-5xl flex">
-                            {{field.value}}
-                        </div>
-                    {% elif  field.block_type == 'body'%}
-                        <div class="body text-lg lg:text-base bg-opacity-75 container w-full leading-relaxed mt-4 bg-gray-200 p-4 rounded-xl">
-                            {{field.value}}
-                        </div>
-                    {% else %}
-                        {% include_block field %}
-                    {% endif %}
-                {% endfor %}
+                <div class=" mt-10 antialiased font-mono text-5xl flex">
+                    {% for block in page.body %}
+                        {%if block.block_type == "Title" %}
+                            {{block.value}}
+                        {%endif%}
+                    {% endfor %}
+                </div>
+
+                <div class="body clearfix text-lg lg:text-base bg-opacity-75 container w-full leading-relaxed mt-4 bg-gray-200 p-4 rounded-xl">                
+                    {% for block in page.body %}
+                        {% if block.block_type == 'body' %}
+                            {{block.value}}
+                        {%elif block.block_type == 'image'%}
+                            <div class=" inline-block clearfix">
+                                <img  {{block.value.get_img_tag}}>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
             </div>
-        </div>
-        <div class="siblings flex flex-col justify-center space-y-4 mt-14 pb-4 md:flex-row md:justify-start md:space-x-8  md:space-y-0">
+        <!--siblings-->
+        <div class="siblings flex flex-col justify-center space-y-4 mt-14 pb-4 mb-12 md:flex-row md:justify-start md:space-x-8  md:space-y-0">
             {%for post in recents %}
                 {% if post != None %}
                     <!-- till  sm screens -->
@@ -69,33 +48,37 @@
                         {% for block in post.specific.CoverImage %}
                         <div class="holder relative h-56">
                             <div class="sibling-img h-full w-full">
-                                <img  class="object-cover h-full w-full rounded-t-3xl" {{block.value.get_img_tag}}>
+                                <img  class="object-cover h-full w-full rounded-t-3xl" {{block.value.image.get_img_tag}}>
                             </div>
                             <p class="tags absolute px-4 top-0 m-4 right-0 bg-red-500 text-white rounded-full">tags</p>
                         </div>
                         {% endfor %}
                         <div class="sibling-info rounded-b-3xl z-5 w-full p-4 bg-gray-800 text-white bg-opacity-75">
                             <a class="text-lg sm:text-2xl" href="{{post.get_url}}">{{post.title | truncatewords:3 | capfirst }}</a>
-                            <div class="sibling-info-body pt-4">
+                            <div class="sibling-info-body hidden pt-4">
                                 {% for block in post.specific.body %}   
+                                    {% if block.block_type == 'body' %}
                                         {{block.value | truncatewords:10}}</p>
+                                    {%endif%}
                                 {% endfor %}
                             </div>
                         </div>
                     </div>
                     <!--for lg screens-->
-                    <div class="sibling relative h-64 w-56 hidden lg:block">
+                    <div class="sibling      h-64 w-56 hidden lg:block ">
                         {% for block in post.specific.CoverImage %}
                         <div class="sibling-img h-full w-full">
-                            <img  class="object-cover h-full w-full rounded-3xl" {{block.value.get_img_tag}}>
+                            <img  class="object-cover h-full w-full rounded-3xl" {{block.value.image.get_img_tag}}>
                         </div>
                         {% endfor %}
                         <p class="tags absolute px-4 top-0 m-4 right-0 bg-red-500 text-white rounded-full">tags</p>
                         <div class="sibling-info absolute z-5 w-full p-4 bottom-0  bg-pink-500 text-white bg-opacity-75 rounded-3xl">
                             <a class="text-lg sm:text-2xl" href="{{post.get_url}}">{{post.title | truncatewords:3 | capfirst }}</a>
-                            <div class="sibling-info-body pt-4">
+                            <div class="sibling-info-body hidden pt-4">
                                 {% for block in post.specific.body %}   
+                                    {% if block.block_type == 'body' %}
                                         {{block.value | truncatewords:10}}</p>
+                                    {%endif%}
                                 {% endfor %}
                             </div>
                         </div>
@@ -103,6 +86,6 @@
                 {% endif %}
             {% endfor %}
         </div>
-    </div>
+    </div> 
     <div class="spacer h-8"></div>
 {% endblock content %}

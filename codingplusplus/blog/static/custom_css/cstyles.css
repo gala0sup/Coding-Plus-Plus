@@ -31,7 +31,8 @@
 }
 
 .richtext-image.right{
-    float: right;
+    display: inline;
+    text-align: right;
 }
 .richtext-image.left{
     float: left;
@@ -42,6 +43,11 @@ span.text{
     color: black;
     
 }
+.clearfix::after {
+    content: "";
+    clear: both;
+    display: table;
+  }
 
 /* span.blinker{
     margin: -6px;
@@ -118,6 +124,10 @@ span.text{
     }
     .sibling-info:hover{
         height: 150px;
+    }
+    .sibling-info:hover .link-spanner, .sibling-info.hover .link-spanner{
+        height: 150px;
+        width: 100%;
     }
     .sibling-info:hover .sibling-info-body{
         display: inline;
